@@ -1,13 +1,12 @@
 ---
 title: "Welcome to R for Treatment Wetlands scientists"
 description: |
-  Welcome to our new blog, R for Treatment Wetlands scientists. We hope you enjoy 
-  reading what we have to say!
+  Welcome to our new blog, R for Treatment Wetlands scientists. With this blog, I'll like to share tutorials on how to process data with R and model it. I hope you enjoy reading what I have to say!
 author:
-  - name: Nora Jones 
-    url: https://example.com/norajones
-    affiliation: Spacely Sprockets
-    affiliation_url: https://example.com/spacelysprokets
+  - name: Nicolas Forquet 
+    url: https://nforquet.github.io/TW_DataScience/
+    affiliation: Irstea
+    affiliation_url: https://reversaal.irstea.fr/
 date: 04-25-2019
 output:
   radix::radix_article:

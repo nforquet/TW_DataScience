@@ -2,16 +2,16 @@
   {
     "path": "posts/welcome/",
     "title": "Welcome to R for Treatment Wetlands scientists",
-    "description": "Welcome to our new blog, R for Treatment Wetlands scientists. We hope you enjoy \nreading what we have to say!",
+    "description": "Welcome to our new blog, R for Treatment Wetlands scientists. With this blog, I'll like to share tutorials on how to process data with R and model it. I hope you enjoy reading what I have to say!",
     "author": [
       {
-        "name": "Nora Jones",
-        "url": "https://example.com/norajones"
+        "name": "Nicolas Forquet",
+        "url": "https://nforquet.github.io/TW_DataScience/"
       }
     ],
     "date": "2019-04-25",
     "categories": [],
     "preview": {},
-    "last_modified": "2019-04-25T18:22:59-06:00"
+    "last_modified": "2019-04-25T21:52:26-06:00"
   }
 ]
