@@ -1,0 +1,79 @@
+---
+title: "Display geographically distributed statistics"
+description: |
+  This tutorial shows how to display statistics on a map using leaflet and how to import layers containing adational geographical informations.
+author:
+  - name: Nicolas Forquet
+    url: https://nforquet.github.io/TW_DataScience/
+    affiliation: Irstea
+    affiliation_url: https://reversaal.irstea.fr/
+date: "`r Sys.Date()`"
+output: radix::radix_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+Displaying data on maps has become easier with the introduction of tools like Google My Maps but even better results may be achieved using powerfull open-source library like leaflet.
+In this tutorial, I will present how to display geographically distributed data using as an exemple the number of treatment wetlands in French administrative subdivisions called "département". Each of these administrative subdivision has a unique id number (code_insee) that we will used to plot the date. 
+
+## Import data
+
+The data we will be using the database of all treatment plant in France larger than 200 people equivalents maintained by the French Ministry of Environment. This database is updated yearly and can be downloaded as a csv file (http://assainissement.developpement-durable.gouv.fr/services.php);
+
+The csv file is read using the library readr.
+```{r}
+library(readr)
+database.ERU <- read_csv("Export_ERU_2016.csv")
+```
+
+We also need geographical information namely the shape of the administrative subdivisions we want to plot the data on. For that we use open source shape files from openstreetmap (https://www.data.gouv.fr/fr/datasets/contours-des-departements-francais-issus-d-openstreetmap/).
+
+The shp file is read using the libraries leaflet, maps and rgdal.
+```{r}
+library(leaflet)
+library(maps)
+library(rgdal)
+
+DptFR <- readOGR("departements-20180101-shp/departements-20180101.shp")
+```
+
+## Data processing
+
+We selected among all treatment plants a subset corresponding to treatment wetlands ("Filtres Plantés" in French):
+```{r}
+database.TW <- subset(database.ERU,`Filière eau principale` == "Filtres Plantés")
+```
+
+We preallocate a numeric vector of the size of the department list given in the shape file.
+```{r}
+Dpt.FPR <- rep(0,length(DptFR$code_insee))
+```
+
+The next step consists in a loop that fills up this vector. It is crutial to follow the order of territorial subdivision id given in the shape file to associate the right value to the right polygon. In the wetland database, the insee code is called "Numéro département". 
+```{r}
+for (i in 1:length(Dpt.FPR)){
+  Dpt.FPR[i] <- sum(database.TW$`Numéro département`==DptFR$code_insee[i])
+}
+```
+
+Then we need a color palette that associate a level of green proportionally to the number of treatment wetlands.
+```{r}
+pal <- colorNumeric(palette = "Greens",domain = 0:max(Dpt.FPR))
+```
+
+Finally we can plot the resulting map!
+```{r}
+m <- leaflet(data = DptFR)
+m <- addPolygons(m,fillColor=~pal(Dpt.FPR), fillOpacity = 1,stroke = FALSE)
+m <- addLegend(m,"bottomright", pal = pal, values = 0:max(Dpt.FPR),
+               title = "nomber of TW",
+               #labFormat = labelFormat(prefix = "$"),
+               opacity = 1
+)
+m
+```
+
