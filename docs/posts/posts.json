@@ -1,5 +1,20 @@
 [
   {
+    "path": "posts/190426_leaflet/",
+    "title": "Display geographically distributed statistics",
+    "description": "This tutorial shows how to display statistics on a map using leaflet and how to import layers containing adational geographical informations.",
+    "author": [
+      {
+        "name": "Nicolas Forquet",
+        "url": "https://nforquet.github.io/TW_DataScience/"
+      }
+    ],
+    "date": "2019-06-18",
+    "categories": [],
+    "preview": {},
+    "last_modified": "2019-06-18T10:56:22+02:00"
+  },
+  {
     "path": "posts/welcome/",
     "title": "Welcome to R for Treatment Wetlands scientists",
     "description": "Welcome to our new blog, R for Treatment Wetlands scientists. With this blog, I'll like to share tutorials on how to process data with R and model it. I hope you enjoy reading what I have to say!",
