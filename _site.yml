@@ -2,9 +2,11 @@ name: "TW_DataScience"
 title: "R for Treatment Wetlands scientists"
 description: |
   R for Treatment Wetlands scientists
+base_url: https://nforquet.github.io/TW_DataScience/  
 output_dir: "docs"
 navbar:
   right:
+    - icon: fa fa-rss
     - text: "Home"
       href: index.html
     - text: "About"
