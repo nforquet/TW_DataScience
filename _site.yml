@@ -6,9 +6,10 @@ base_url: https://nforquet.github.io/TW_DataScience/
 output_dir: "docs"
 navbar:
   right:
-    - icon: fa fa-rss
     - text: "Home"
       href: index.html
     - text: "About"
       href: about.html
+    - icon: fa fa-rss
+      href: index.html
 output: radix::radix_article
